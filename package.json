@@ -1,21 +1,24 @@
 {
   "name": "athkari",
-  "displayName": "athkari",
+  "displayName": "Athkari",
   "description": "asd",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.98.0"
   },
+  "icon": "./src/assets/athkari.png",
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "athkari.helloWorld",
-        "title": "Hello World"
+        "command": "athkari.athkari",
+        "title": "athkari"
       }
     ]
   },
