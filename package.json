@@ -1,12 +1,13 @@
 {
   "name": "athkari",
   "displayName": "Athkari",
-  "description": "asd",
+  "description": "An Islamic Athkar periodically to keep you mindful while coding ..",
   "version": "0.0.1",
+  "publisher": "AmmarAlmansouri",
   "engines": {
     "vscode": "^1.98.0"
   },
-  "icon": "./src/assets/athkari.png",
+  "icon": "./assets/athkari.png",
   "categories": [
     "Other"
   ],

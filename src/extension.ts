@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
   setInterval(() => {
     const indexOfList = getRandomNumber(0, ListOfAdkhar.length - 1);
     vscode.window.showInformationMessage(ListOfAdkhar[indexOfList] + " :🔔");
-  }, 10000);
+  }, 1800000);
 
   // when user press ( Shift + Alt + P ) and enter command ( athkari ) the below options will be shown ..
   const disposable = vscode.commands.registerCommand(
@@ -79,7 +79,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (selection === "تحديث") {
         vscode.window.showInformationMessage("تم التحديث بنجاح");
-        vscode.window.showInformationMessage("أهلاً بك في أذكار");
+        vscode.window.showInformationMessage("أهلاً بك في أذكاري");
       }
     }
   );
