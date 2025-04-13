@@ -4,6 +4,7 @@
 ✅ Displays random Islamic Athkar periodically inside VS Code.
 ✅ Allows users to add new Athkar manually and save them for future use.
 ✅ Sends a notification with a random Thikr every 30 minuts.
+✅ Allow users to alter the time of showing new thikr.
 ✅ Interactive commands for managing Athkar within the editor.
 
 🔹 How It Works?
@@ -27,6 +28,7 @@ A "Refresh" option updates the Adhkar and displays a welcome message.
 ✅ عرض أذكار تلقائيًا كل فترة زمنية داخل VS Code.
 ✅ إمكانية إضافة أذكار جديدة يدويًا وحفظها للاستخدام المستقبلي.
 ✅ تنبيه المستخدم بذكر كل 30 دقيقة.
+✅ إمكانية تعديل مدة ظهور الأذكار.
 ✅ أوامر تفاعلية لإدارة الأذكار داخل بيئة التطوير.
 
 🔹 كيف يعمل؟
