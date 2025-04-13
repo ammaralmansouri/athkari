@@ -45,23 +45,61 @@ export function activate(context: vscode.ExtensionContext) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
+  // Get saved time or use default
+  let newTime: number = context.globalState.get("AdkharIntervalMinutes", 30); // Default value in minutes
+  let time = newTime * 60000;
+  let interval: NodeJS.Timeout;
+
   // I used setInterval to show the Adkhar every 30 minutes ..
-  setInterval(() => {
-    const indexOfList = getRandomNumber(0, ListOfAdkhar.length - 1);
-    vscode.window.showInformationMessage(ListOfAdkhar[indexOfList] + " :🔔");
-  }, 1800000);
+  const startInterval = () => {
+    interval = setInterval(() => {
+      const indexOfList = getRandomNumber(0, ListOfAdkhar.length - 1);
+      vscode.window.showInformationMessage(ListOfAdkhar[indexOfList] + " :🔔");
+    }, time);
+  };
+
+  startInterval(); // Start the first interval on extension activation
 
   // when user press ( Shift + Alt + P ) and enter command ( athkari ) the below options will be shown ..
   const disposable = vscode.commands.registerCommand(
     "athkari.athkari",
     async () => {
       const selection = await vscode.window.showQuickPick(
-        ["إضافة ذكر جديد", "تحديث"],
+        ["تعديل الوقت", "إضافة ذكر جديد", "تحديث"],
         {
           placeHolder: "اختر من القائمة",
         }
       );
 
+      // Edit showing new thiker time ..
+      if (selection === "تعديل الوقت") {
+        const inputTime = await vscode.window.showInputBox({
+          placeHolder: "أدخل التوقيت الجديد هنا...",
+          prompt:
+            "أدخل عدد الدقائق التي ترغب أن يظهر فيها ذكر جديد تلقائيًا. مثال: إذا أدخلت 30، سيظهر ذكر كل 30 دقيقة.",
+        });
+
+        if (inputTime !== undefined) {
+          const parsedTime = parseInt(inputTime, 10);
+          if (!isNaN(parsedTime)) {
+            newTime = parsedTime;
+            time = newTime * 60000; // Update the interval time
+            clearInterval(interval); // Clear the old interval
+            startInterval(); // Start new interval with updated time
+
+            // Save time to globalState
+            context.globalState.update("AdkharIntervalMinutes", newTime);
+
+            vscode.window.showInformationMessage(
+              `✅ تم تعديل الوقت إلى ${newTime} دقيقة`
+            );
+          } else {
+            vscode.window.showErrorMessage("❌ الرجاء إدخال رقم صحيح.");
+          }
+        }
+      }
+
+      // Add new dhikr to the list ..
       if (selection === "إضافة ذكر جديد") {
         const newDhikr = await vscode.window.showInputBox({
           placeHolder: "أدخل الذكر الجديد هنا...",
@@ -77,6 +115,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
       }
 
+      // Re
       if (selection === "تحديث") {
         vscode.window.showInformationMessage("تم التحديث بنجاح");
         vscode.window.showInformationMessage("أهلاً بك في أذكاري");
