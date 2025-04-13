@@ -2,7 +2,7 @@
   "name": "athkari",
   "displayName": "Athkari",
   "description": "An Islamic Athkar periodically to keep you mindful while coding ..",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "AmmarAlmansouri",
   "engines": {
     "vscode": "^1.98.0"
